@@ -7,7 +7,10 @@ import java.util.Scanner;
 
 public class AddressBookMain {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    	Scanner sc = new Scanner(System.in);
+    	String ans = "Y";
+    	while(ans.equals("Y")) {
+        
             /*----------------Strings----------------------*/
             System.out.println("Enter first name = ");
             String firstName = sc.next();
@@ -28,23 +31,28 @@ public class AddressBookMain {
             System.out.println("Enter phone Number = ");
             long PhoneNumber = sc.nextLong();
             
-          
-
-        AddressBookDetails information = new AddressBookDetails(firstName,lastName,address,subCity,state,email,Zip,PhoneNumber);
-
-        Map<String, AddressBookDetails> addressBook = new HashMap<>();
-        addressBook.put(firstName,information);
-        for(String AddressBookDetails: addressBook.keySet()){
-            System.out.println("firstName = " + information.getFirstName() +
-                    "\nlast Name = "+ information.getLastName() +
-                    "\naddress = "+ information.getAddress() +
-                    "\ncity = "+ information.getCity() +
-                    "\nstate = "+ information.getState() +
-                    "\nemail = "+ information.getEmail() +
-                    "\nZip = "+ information.getZipCode() +
-                    "\nPhoneNumber = "+ information.getPhoneNumber());
+        
+	
+	        AddressBookDetails information = new AddressBookDetails(firstName,lastName,address,subCity,state,email,Zip,PhoneNumber);
+	
+	        Map<String, AddressBookDetails> addressBook = new HashMap<>();
+	        addressBook.put(firstName,information);
+	        for(String AddressBookDetails: addressBook.keySet()){
+	            System.out.println("firstName = " + information.getFirstName() +
+	                    "\nlast Name = "+ information.getLastName() +
+	                    "\naddress = "+ information.getAddress() +
+	                    "\ncity = "+ information.getCity() +
+	                    "\nstate = "+ information.getState() +
+	                    "\nemail = "+ information.getEmail() +
+	                    "\nZip = "+ information.getZipCode() +
+	                    "\nPhoneNumber = "+ information.getPhoneNumber());
         	};
+        	
+        	System.out.println("Do you want to add new contact (Y-yes/N-no): ");
+        	ans = sc.next();
         }
+    		
+    }
 
     }
 
