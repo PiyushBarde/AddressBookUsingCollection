@@ -10,18 +10,20 @@ public class AddressBookMethods {
 	
 	
 	
-	public void editContact(Map<String, AddressBookDetails> addressBook, AddressBookDetails information) {
-			System.out.println("Enter the name of person u want to edit details : ");
-			String editInfoOfName = sc.next();
-			addressBook.replace(editInfoOfName, information, infoObjectCreater());
-		    }
+	public void editContact(Map<String, AddressBookDetails> addressBook, AddressBookDetails information)
+	{
+		System.out.println("Enter the name of person u want to edit details : ");
+		String editInfoOfName = sc.next();
+		addressBook.replace(editInfoOfName, information, infoObjectCreater());
+	    }
 	
-	private void deleteContact(Map<String, AddressBookDetails> addressBook, AddressBookDetails information) {
+	private void deleteContact(Map<String, AddressBookDetails> addressBook, AddressBookDetails information) 
+	{
 		System.out.println("Enter the name of person u want to delete details : ");
 		String editInfoOfName = sc.next();
 		addressBook.remove(editInfoOfName);
 	    }
-	
+
 	public AddressBookDetails infoObjectCreater() {
 		Scanner sc = new Scanner(System.in);
 		 /*----------------Strings----------------------*/
@@ -49,12 +51,14 @@ public class AddressBookMethods {
         }
 	
 	
-	public void addContact() {
+	public void addContact()
+	{
 		Scanner sc = new Scanner(System.in);
     	Map<String, AddressBookDetails> addressBook = new HashMap<>();
     	String ans = "Y";
-    	 AddressBookDetails information = null;
-    	while(ans.equals("Y")) {
+    	AddressBookDetails information = null;
+    	while(ans.equals("Y"))
+    	{
         
             //----------------Strings----------------------//
             System.out.println("Enter first name = ");
@@ -79,7 +83,8 @@ public class AddressBookMethods {
             information = new AddressBookDetails(firstName,lastName,address,subCity,state,email,Zip,PhoneNumber);
 	
 	        addressBook.put(firstName,information);
-	        for(String AddressBookDetails: addressBook.keySet()){
+	        for(String AddressBookDetails: addressBook.keySet())
+	        {
 	            System.out.println("firstName = " + information.getFirstName() +
 	                    "\nlast Name = "+ information.getLastName() +
 	                    "\naddress = "+ information.getAddress() +
@@ -104,17 +109,8 @@ public class AddressBookMethods {
     			break;
     			
     			default: System.err.println("invalid input");
+    			break;
     				
     		}
-    		
-    	/*	System.out.println("Do you want to edit any contact (Y-yes/N-no) : ");
-    		String ansSecond = sc.next();
-    		if(ansSecond.equals("Y")) {
-    		editContact(addressBook,information);
-    		} */
 	}
-
-	
-	
-
 }
