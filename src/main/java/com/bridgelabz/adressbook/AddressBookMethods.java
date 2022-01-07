@@ -65,12 +65,20 @@ public class AddressBookMethods {
 	    	String ans = "Y";
 	    	AddressBookDetails information = null;
 	    	System.out.println("--------Contacts in " + nameOfAddressBook + "---------");
-	    	while(ans.equals("Y"))
+	    	
+	    	//-----boolean is not used coz here ans is controlling looping condition u can see that at end of while loop---//
+	    	
+resume:	    while(ans.equals("Y"))
 	    	{
 	        
 	            //----------------Strings----------------------//
-	            System.out.println("Enter first name = ");
+	
+	        System.out.println("Enter first name = ");
 	            String firstName = sc.next();
+	            if(addressBook.containsKey(firstName)) {
+	            	System.err.println("Person already exist..enter valid input!");
+	            	continue resume;
+	            }
 	            System.out.println("Enter Last name = ");
 	            String lastName = sc.next();
 	            System.out.println("Enter Address = ");
@@ -87,6 +95,8 @@ public class AddressBookMethods {
 	            int Zip = sc.nextInt();
 	            System.out.println("Enter phone Number = ");
 	            long PhoneNumber = sc.nextLong();
+	            
+	            
 	            
 	            information = new AddressBookDetails(firstName,lastName,address,subCity,state,email,Zip,PhoneNumber);
 		
