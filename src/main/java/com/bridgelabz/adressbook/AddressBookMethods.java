@@ -16,6 +16,12 @@ public class AddressBookMethods {
 			addressBook.replace(editInfoOfName, information, infoObjectCreater());
 		    }
 	
+	private void deleteContact(Map<String, AddressBookDetails> addressBook, AddressBookDetails information) {
+		System.out.println("Enter the name of person u want to delete details : ");
+		String editInfoOfName = sc.next();
+		addressBook.remove(editInfoOfName);
+	    }
+	
 	public AddressBookDetails infoObjectCreater() {
 		Scanner sc = new Scanner(System.in);
 		 /*----------------Strings----------------------*/
@@ -38,8 +44,8 @@ public class AddressBookMethods {
         System.out.println("Enter phone Number = ");
         long PhoneNumber = sc.nextLong();
         
-        AddressBookDetails editedInformation = new AddressBookDetails(firstName,lastName,address,subCity,state,email,Zip,PhoneNumber);
-        return editedInformation;
+        AddressBookDetails information = new AddressBookDetails(firstName,lastName,address,subCity,state,email,Zip,PhoneNumber);
+        return information;
         }
 	
 	
@@ -50,7 +56,7 @@ public class AddressBookMethods {
     	 AddressBookDetails information = null;
     	while(ans.equals("Y")) {
         
-            /*----------------Strings----------------------*/
+            //----------------Strings----------------------//
             System.out.println("Enter first name = ");
             String firstName = sc.next();
             System.out.println("Enter Last name = ");
@@ -87,12 +93,28 @@ public class AddressBookMethods {
         	System.out.println("Do you want to add new contact (Y-yes/N-no): ");
         	ans = sc.next();
         }
-    		System.out.println("Do you want to edit any contact (Y-yes/N-no) : ");
+    		System.out.println("Edit Contact (press 1)"
+    				+ "Delete Contact (press 2)");
+    		int action = sc.nextInt();
+    		switch(action) {
+    			case 1: editContact(addressBook,information);
+    			break;
+    			
+    			case 2: deleteContact(addressBook,information);
+    			break;
+    			
+    			default: System.err.println("invalid input");
+    				
+    		}
+    		
+    	/*	System.out.println("Do you want to edit any contact (Y-yes/N-no) : ");
     		String ansSecond = sc.next();
     		if(ansSecond.equals("Y")) {
     		editContact(addressBook,information);
-    		}
+    		} */
 	}
+
+	
 	
 
 }
