@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class AddressBookMethods {
 	Map<String, HashMap<String, AddressBookDetails>> primeAddressBook = new HashMap<>();
-	
+	AddressBookDetails information = null;
 	Map<String, AddressBookDetails> addressBook = new HashMap<>();
 	Map<String, AddressBookDetails> preAddressBook = new HashMap<>();
 	Map<String, AddressBookDetails> addressBookByCity = new HashMap<>();
@@ -40,7 +40,7 @@ public class AddressBookMethods {
 		Map<String,AddressBookDetails> searchAddressBookByCity =addressBookByCity.entrySet().stream()
 				.filter(e->e.getKey().equals(cityNameForSearch))
 				.collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
-		System.out.println(searchAddressBookByCity);
+		System.out.println(searchAddressBookByCity.toString());
 		
 	}
 	
@@ -154,7 +154,9 @@ resume:	    while(ans.equals("Y"))
 	        }
 	    		System.out.println("Edit Contact (press 1)"
 	    				+ "\nDelete Contact (press 2)"
-	    				+ "\\nCreat New Adressbook (press 3)");
+	    				+ "\nCreat New Adressbook (press 3)"
+	    				+ "Search person by City (press 4)"
+	    				+ "Search person by State (press 5)");
 	    		int action = sc.nextInt();
 	    		switch(action) {
 	    			case 1: editContact(addressBook,information);
@@ -167,7 +169,6 @@ resume:	    while(ans.equals("Y"))
 	    			break;
 	    			
 	    			case 4: searchContactByCity(information);
-	    				
 	    			break;
 	    			
 	    			case 5: searchContactByState(information);
