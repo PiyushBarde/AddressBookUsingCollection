@@ -33,6 +33,7 @@ public class AddressBookMethods {
 	    }
 	
 	//-----------------with stream----------------------//
+	
 	private void searchContactByCity(AddressBookDetails information) {
 		System.out.println("Enter city name = ");
 		String cityNameForSearch = sc.next();
