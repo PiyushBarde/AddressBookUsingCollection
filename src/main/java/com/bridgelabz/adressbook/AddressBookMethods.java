@@ -1,13 +1,14 @@
 package com.bridgelabz.adressbook;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class AddressBookMethods {
 	Map<String, HashMap<String, AddressBookDetails>> primeAddressBook = new HashMap<>();
-	AddressBookDetails information = null;
+	static AddressBookDetails information = null;
 	Map<String, AddressBookDetails> addressBook = new HashMap<>();
 	Map<String, AddressBookDetails> preAddressBook = new HashMap<>();
 	Map<String, AddressBookDetails> addressBookByCity = new HashMap<>();
@@ -56,6 +57,23 @@ public class AddressBookMethods {
 		System.out.println("Number of person " + searchAddressBookByState.size() + " in State " + stateNameForSearch);
 	}
 	
+			//---------------------sorting-----------------------//
+	public void sortByCity() {
+
+		Map<String,AddressBookDetails> sortedByCity =addressBookByCity.entrySet().stream()
+				      						.sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue
+				      							,(oldValue,newValue)->oldValue,LinkedHashMap::new));
+		System.out.println("Sorted Address Book "+sortedByCity);
+		
+	}
+    public void sortByState() {
+
+		Map<String,AddressBookDetails> sortedByState =addressBookByState.entrySet().stream()
+				      						.sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue
+				      							,(oldValue,newValue)->oldValue,LinkedHashMap::new));
+		System.out.println("Sorted Address Book "+sortedByState);
+		
+	}
 
 	public AddressBookDetails infoObjectCreater() {
 		Scanner sc = new Scanner(System.in);
