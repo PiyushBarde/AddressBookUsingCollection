@@ -42,7 +42,7 @@ public class AddressBookMethods {
 				.filter(e->e.getKey().equals(cityNameForSearch))
 				.collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
 		System.out.println(searchAddressBookByCity.toString());
-		
+		System.out.println("Number of person " + searchAddressBookByCity.size() + " in city " + cityNameForSearch);
 	}
 	
 	private void searchContactByState(AddressBookDetails information) {
@@ -53,7 +53,7 @@ public class AddressBookMethods {
 				.filter(e->e.getKey().equals(stateNameForSearch))
 				.collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
 		System.out.println(searchAddressBookByState);
-		
+		System.out.println("Number of person " + searchAddressBookByState.size() + " in State " + stateNameForSearch);
 	}
 	
 
@@ -176,7 +176,6 @@ resume:	    while(ans.equals("Y"))
 	    			break;
 	    			
 	    			default: System.err.println("invalid input");
-	    			break;
 	    				
     		}
 		}
