@@ -1,28 +1,60 @@
 package com.bridgelabz.adressbook;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBookMethods {
+	Map<String, HashMap<String, AddressBookDetails>> primeAddressBook = new HashMap<>();
+	
+	Map<String, AddressBookDetails> addressBook = new HashMap<>();
+	Map<String, AddressBookDetails> preAddressBook = new HashMap<>();
+	Map<String, AddressBookDetails> addressBookByCity = new HashMap<>();
+	Map<String, AddressBookDetails> addressBookByState = new HashMap<>();
 	Scanner sc = new Scanner(System.in);
 	
+     //--------------without using stream---------------//	
 	
-	
-	public void editContact(Map<String, AddressBookDetails> addressBook, AddressBookDetails information)
+	public void editContact(Map<String, AddressBookDetails> addressBook,
+			AddressBookDetails information)
 	{
 		System.out.println("Enter the name of person u want to edit details : ");
 		String editInfoOfName = sc.next();
 		addressBook.replace(editInfoOfName, information, infoObjectCreater());
 	    }
 	
-	private void deleteContact(Map<String, AddressBookDetails> addressBook, AddressBookDetails information) 
+	private void deleteContact(Map<String, AddressBookDetails> addressBook,
+			AddressBookDetails information) 
 	{
 		System.out.println("Enter the name of person u want to delete details : ");
 		String editInfoOfName = sc.next();
 		addressBook.remove(editInfoOfName);
 	    }
+	
+	//-----------------with stream----------------------//
+	private void searchContactByCity(AddressBookDetails information) {
+		System.out.println("Enter city name = ");
+		String cityNameForSearch = sc.next();
+		
+		Map<String,AddressBookDetails> searchAddressBookByCity =addressBookByCity.entrySet().stream()
+				.filter(e->e.getKey().equals(cityNameForSearch))
+				.collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
+		System.out.println(searchAddressBookByCity);
+		
+	}
+	
+	private void searchContactByState(AddressBookDetails information) {
+		System.out.println("Enter city name = ");
+		String stateNameForSearch = sc.next();
+		
+		Map<String,AddressBookDetails> searchAddressBookByState =addressBookByCity.entrySet().stream()
+				.filter(e->e.getKey().equals(stateNameForSearch))
+				.collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
+		System.out.println(searchAddressBookByState);
+		
+	}
+	
 
 	public AddressBookDetails infoObjectCreater() {
 		Scanner sc = new Scanner(System.in);
@@ -58,9 +90,7 @@ public class AddressBookMethods {
 		while(cond) {
 			System.out.println("Enter the name of ur address book");
 			String nameOfAddressBook = sc.next();
-			Map<String, HashMap<String, AddressBookDetails>> primeAddressBook = new HashMap<>();
 			
-	    	Map<String, AddressBookDetails> addressBook = new HashMap<>();
 	    	primeAddressBook.put(nameOfAddressBook,(HashMap<String, AddressBookDetails>) addressBook);
 	    	String ans = "Y";
 	    	AddressBookDetails information = null;
@@ -94,13 +124,19 @@ resume:	    while(ans.equals("Y"))
 	            System.out.println("Enter zip code = ");
 	            int Zip = sc.nextInt();
 	            System.out.println("Enter phone Number = ");
-	            long PhoneNumber = sc.nextLong();
+	            long PhoneNumber = sc.nextLong();                        
 	            
 	            
 	            
 	            information = new AddressBookDetails(firstName,lastName,address,subCity,state,email,Zip,PhoneNumber);
-		
+	            preAddressBook.put(subCity, information);
+
+	            addressBookByCity.put(subCity, information);
+	            addressBookByState.put(state, information);
 		        addressBook.put(firstName,information);
+		    
+		        
+		        
 		        for(String AddressBookDetails: addressBook.keySet())
 		        {
 		            System.out.println("firstName = " + information.getFirstName() +
@@ -128,6 +164,13 @@ resume:	    while(ans.equals("Y"))
 	    			break;
 	    			
 	    			case 3: addContact();
+	    			break;
+	    			
+	    			case 4: searchContactByCity(information);
+	    				
+	    			break;
+	    			
+	    			case 5: searchContactByState(information);
 	    			break;
 	    			
 	    			default: System.err.println("invalid input");
